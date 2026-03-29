@@ -1,25 +1,26 @@
-package com.guruswarupa.lab1
+package com.guruswarupa.calci
 
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.guruswarupa.calci.R
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var tvDisplay: TextView
+    private lateinit var tvOperator: TextView
     private var firstValue = 0.0
     private var currentOperator: String? = null
     private var isStartingNewNumber = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge() // Makes the app full-screen
+        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
         tvDisplay = findViewById(R.id.tvDisplay)
+        tvOperator = findViewById(R.id.tvOperator)
 
         // 1. Setup Digit Buttons (0-9 and .)
         val digitButtons = listOf(
@@ -63,6 +64,7 @@ class MainActivity : AppCompatActivity() {
     private fun prepareOperation(op: String) {
         firstValue = tvDisplay.text.toString().toDoubleOrNull() ?: 0.0
         currentOperator = op
+        tvOperator.text = op
         isStartingNewNumber = true
     }
 
@@ -85,12 +87,14 @@ class MainActivity : AppCompatActivity() {
             result.toString()
         }
         
+        tvOperator.text = "" // Clear operator after calculation
         isStartingNewNumber = true
         currentOperator = null
     }
 
     private fun clearAll() {
         tvDisplay.text = "0"
+        tvOperator.text = ""
         firstValue = 0.0
         currentOperator = null
         isStartingNewNumber = true
