@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<students>
+    <student>
+        <name>John</name>
+        <roll>101</roll>
+        <course>Computer Science</course>
+    </student>
+    <student>
+        <name>Mary</name>
+        <roll>102</roll>
+        <course>Electronics</course>
+    </student>
+</students>
